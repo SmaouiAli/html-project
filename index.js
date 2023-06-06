@@ -43,7 +43,7 @@ var template =  `
 
 </div>`
 
-function displayData () {
+function displayData (data) {
 
   var container = $('#container')
 
@@ -72,12 +72,21 @@ function addNewProduct() {
       description: $('#desc').val(),
       price: $('#price').val()
     }
-    
+
   data.push(newProduct)
   $('#container').empty()
   displayData()
 }
 
-displayData()
+displayData(data)
 
 $("#sub").click(addNewProduct)
+
+function search () {
+  var filtredData = data.filter(function (e) {
+    return e.title.includes( $("#search").val())
+  })
+  $('#container').empty()
+  displayData(filtredData)
+}
+$("#searchButton").click(search)
